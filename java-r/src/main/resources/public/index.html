@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Star Wars Box Office Revenue</title>
+    <style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 70%;
+        }
+        .center-check {
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <b-navbar toggleable="md" variant="light" type="light" bg sticky="true">
+            <b-navbar-brand tag="h1" class="mb-0">Star Wars Box Office Revenue</b-navbar-brand>
+            <!-- b-navbar-form>
+                <b-btn size="sm" variant="primary" href="https://en.wikipedia.org/wiki/List_of_Star_Wars_films_and_television_series#Box_office_performance">More infos about the data</b-btn>
+            </b-navbar-form -->
+        </b-navbar>
+
+        <b-container>
+            <b-tabs>
+                <b-tab title="Charts" active>
+                    <br/>
+                    <div class="center-check">
+                        <b-form-checkbox-group v-model="selectedTrilogies"
+                                               buttons
+                                               button-variant="primary"
+                                               size="md"
+                                               name="trilogyButtons"
+                                               :options="trilogies">
+                        </b-form-checkbox-group>
+                    </div>
+
+                    <div v-if="showChart">
+                        <img :src="imgUrl" class="center"/>
+                    </div>
+                </b-tab>
+                <b-tab title="Stats">
+                    <br/>
+                    <b-button @click="getStats()" variant="primary">Get stats</b-button>
+                    <br/>
+                    <br/>
+                    <b-card-group deck v-if="stats">
+                        <b-card :title="stats.best.title" bg-variant="success" text-variant="white" class="text-center">
+                            <p class="card-text">Revenue: {{ stats.best.revenue.toLocaleString() }} $</p>
+                        </b-card>
+                        <b-card :title="stats.worst.title" bg-variant="danger" text-variant="white" class="text-center">
+                            <p class="card-text">Revenue: {{ stats.worst.revenue.toLocaleString() }} $</p>
+                        </b-card>
+                    </b-card-group>
+                </b-tab>
+            </b-tabs>
+        </b-container>
+    </div>
+    <script>
+        window.app = new Vue({
+            el: '#app',
+            data: {
+                trilogies: [
+                    { text: "Original Trilogy (1977-1983)", value: 1 },
+                    { text: "Prequel Trilogy (1999-2005)", value: 2 },
+                    { text: "Sequel Trilogy (2015-...)", value: 3 }
+                ],
+                selectedTrilogies: [1,2,3],
+                stats: null
+            },
+            computed: {
+                imgUrl() {
+                    return '/starwars/svg/' + this.selectedTrilogies.join(',')
+                },
+                showChart() {
+                    return this.selectedTrilogies.length > 0
+                }
+            },
+            methods: {
+                getStats: function() {
+                    axios.get('/starwars/stats')
+                        .then(function (response) {
+                            app.stats = response.data
+                        })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
