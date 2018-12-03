@@ -15,5 +15,5 @@ export PATH=$GRAALVM_HOME/bin:$PATH
 ## Examples
 
 * __java-reflection__: how to play with reflection when using a native image
-* __java-r__: how to develop a polyglot application (R for the data science and Java for the web service)
+* __java-r__: how to develop a polyglot application (R for the data exploration and Java for the web service)
 
