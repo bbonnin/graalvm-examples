@@ -1,0 +1,9 @@
+[
+  {
+    "name": "io.millesabords.graalvm.examples.reflection.Beer",
+    "allDeclaredFields": true,
+    "allPublicFields": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }
+]
