@@ -14,6 +14,8 @@ export PATH=$GRAALVM_HOME/bin:$PATH
 
 ## Examples
 
-* __java-reflection__: how to play with reflection when using a native image
+* __java-reflection__: 
+  * how to play with reflection when using a native image
+  * how to create a docker image hosting your binary
 * __java-r__: how to develop a polyglot application (R for the data exploration and Java for the web service)
 

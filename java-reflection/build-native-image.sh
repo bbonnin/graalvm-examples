@@ -9,10 +9,9 @@ export PATH=$JAVA_HOME/bin:/$GRAALVM_HOME/bin:$PATH
 
 
 native-image \
-    -cp target/*:target/lib/* \
+    -jar target/java-reflection-1.0-SNAPSHOT-jar-with-dependencies.jar \
     -H:ReflectionConfigurationFiles=reflection.json \
-    -H:Name=BeerService \
-    io.millesabords.graalvm.examples.reflection.BeerService
+    -H:Name=BeerService
 
 
 # -H:ReflectionConfigurationFiles=reflection.json
