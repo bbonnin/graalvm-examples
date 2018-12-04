@@ -21,9 +21,9 @@ public class BeerService {
 
         before((req, res) -> res.type("application/json"));
 
-        get("/user", (req, res) -> beers.values(), mapper::writeValueAsString);
+        get("/beer", (req, res) -> beers.values(), mapper::writeValueAsString);
 
-        get("/user/:id", (req, res) -> {
+        get("/beer/:id", (req, res) -> {
             final String id = req.params("id");
 
             if (beers.containsKey(id)) {
@@ -35,7 +35,7 @@ public class BeerService {
             }
         }, mapper::writeValueAsString);
 
-        post("/user", (req, res) -> {
+        post("/beer", (req, res) -> {
             final String name = req.queryParams("name");
             final String country = req.queryParams("country");
             final Beer beer = new Beer(counter.incrementAndGet(), name, country);

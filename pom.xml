@@ -86,6 +86,7 @@
                                     <overWriteReleases>false</overWriteReleases>
                                     <overWriteSnapshots>false</overWriteSnapshots>
                                     <overWriteIfNewer>true</overWriteIfNewer>
+                                    <includeTypes>jar</includeTypes>
                                 </configuration>
                             </execution>
                         </executions>
