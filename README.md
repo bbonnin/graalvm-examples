@@ -5,7 +5,7 @@ Some GraalVM examples
 ## Pre-requisite
 
 * Install `GraalVM`
-* Set your `JAVA_HOME` to the JRE of your installation of GraalVM, for example:
+* Set your `JAVA_HOME` to the JDK of your installation of GraalVM, for example:
 ```
 export GRAALVM_HOME=/path/to/graalvm
 export JAVA_HOME=$GRAALVM_HOME
