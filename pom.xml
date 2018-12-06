@@ -15,7 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <java.home>${env.GRAALVM_HOME}/jre</java.home>
+        <!--java.home>${env.GRAALVM_HOME}/jre</java.home-->
         <main.class></main.class>
     </properties>
 
@@ -100,6 +100,7 @@
     </profiles>
 
     <modules>
+        <module>reflection-helper</module>
         <module>java-reflection</module>
         <module>java-r</module>
     </modules>
