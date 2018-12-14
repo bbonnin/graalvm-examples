@@ -30,8 +30,6 @@ public class ReflectionFileGenerator {
         final String jarFilename = args[0];
         final String reflectJsonFilename = args[1];
 
-        final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
         final File jarFile = new File(jarFilename);
         final URL jarUrl = jarFile.toURI().toURL();
         final URLClassLoader sysLoader = URLClassLoader.newInstance(new URL[] { jarUrl });
@@ -46,11 +44,8 @@ public class ReflectionFileGenerator {
                 .map(c -> new ReflectionConfiguration(c.getName(), true, true, true, true))
                 .collect(Collectors.toList());
 
-        final String reflectJson = gson.toJson(configs);
-
-        FileUtils.write(new File(reflectJsonFilename), reflectJson, "UTF-8");
-
-        System.out.println("File generated: " + reflectJsonFilename);
-        System.out.println("# of classes: " + classSet.size());
+        ReflectionFileHelper.generateFile(configs, reflectJsonFilename);
     }
+
+
 }
